@@ -1,0 +1,17 @@
+{
+  "name": "bite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bite - MERN nutrition tracking app with barcode scanning, food search, and JWT authentication.",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
