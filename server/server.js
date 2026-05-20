@@ -7,7 +7,6 @@ import foodRoutes from "./routes/foodRoutes.js";
 import mealRoutes from "./routes/mealRoutes.js";
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -17,7 +16,7 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL?.split(",") || "*",
     credentials: true,
-  })
+  }),
 );
 app.use(express.json());
 
@@ -33,7 +32,8 @@ app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(err.status || 500).json({
     success: false,
-    message: err.response?.data?.status_verbose || err.message || "Server error",
+    message:
+      err.response?.data?.status_verbose || err.message || "Server error",
   });
 });
 
