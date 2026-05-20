@@ -1,192 +1,125 @@
-# Bite
+readme for this project'
+Bite 🍽️
 
-Bite is a MERN nutrition tracking app with barcode scanning, manual food search, JWT authentication, and per-user meal history.
+A MERN Stack Nutrition Tracking and Food Scanner Application
 
-## Stack
+📌 Overview
 
-- MongoDB
-- Express.js
-- React + Vite
-- Node.js
-- Tailwind CSS
-- Recharts
-- OpenFoodFacts API
-- JWT authentication
+Bite is a full-stack MERN application that helps users track meals, scan food products, and monitor nutrition details. The application provides authentication, barcode scanning, meal history, nutrition summaries, and a responsive modern UI.
 
-## Features
-
-- User registration and login with JWT
-- Protected dashboard, scanner, search, and meal history pages
-- Barcode nutrition lookup with OpenFoodFacts
-- Manual food search
-- Per-user meal logging in MongoDB
-- Meal filtering, deletion, and pagination
-- Daily macro summary and charts
-- Dark mode with saved preference
-
-## Run Locally
-
-1. Install dependencies from the project root:
-
-```bash
-npm install
-npm install --prefix server
-npm install --prefix client
-```
-
-2. Create env files:
-
-- `server/.env`
-- `client/.env`
-
-3. Add server env values:
-
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-CLIENT_URL=http://localhost:5173
-OPEN_FOOD_FACTS_BASE_URL=https://world.openfoodfacts.org
-JWT_SECRET=replace_this_with_a_long_random_secret
-JWT_EXPIRES_IN=7d
-```
-
-4. Add client env values:
-
-```env
-VITE_API_BASE_URL=http://localhost:5000/api
-```
-
-5. Start the backend:
-
-```bash
+🚀 Features
+🔐 User Authentication (Register/Login)
+🍔 Food Nutrition Search
+📷 Barcode Scanner Integration
+📊 Nutrition Dashboard
+🥗 Meal Tracking
+📜 Meal History
+🌙 Dark Mode Support
+📱 Responsive Design
+⚡ Fast Vite Frontend
+☁️ Render + Vercel Deployment
+🛠️ Tech Stack
+Frontend
+React.js
+Vite
+Tailwind CSS
+Axios
+React Router
+Backend
+Node.js
+Express.js
+MongoDB Atlas
+Mongoose
+JWT Authentication
+Deployment
+Vercel (Frontend)
+Render (Backend)
+📂 Project Structure
+bite/
+├── client/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── server/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   └── server.js
+│
+└── README.md
+⚙️ Installation
+1️⃣ Clone Repository
+git clone https://github.com/va-ru-n/bite.git
+cd bite
+📦 Backend Setup
 cd server
-npm run dev
-```
+npm install
 
-6. Start the frontend in a second terminal:
+Create .env
 
-```bash
-cd client
-npm run dev
-```
-
-## Auth API
-
-### Register
-
-- `POST /api/auth/register`
-
-```json
-{
-  "name": "Asha",
-  "email": "asha@example.com",
-  "password": "secret123"
-}
-```
-
-Sample response:
-
-```json
-{
-  "success": true,
-  "message": "Account created successfully",
-  "token": "jwt_token_here",
-  "user": {
-    "_id": "665000000000000000000001",
-    "name": "Asha",
-    "email": "asha@example.com"
-  }
-}
-```
-
-### Login
-
-- `POST /api/auth/login`
-
-```json
-{
-  "email": "asha@example.com",
-  "password": "secret123"
-}
-```
-
-### Current User
-
-- `GET /api/auth/me`
-- Header: `Authorization: Bearer <token>`
-
-## Meal API
-
-All meal routes require:
-
-```http
-Authorization: Bearer <token>
-```
-
-### Get Meals
-
-- `GET /api/meals?page=1&limit=6&search=oats&from=2026-05-01&to=2026-05-20`
-
-### Create Meal
-
-- `POST /api/meals`
-
-```json
-{
-  "foodName": "Greek Yogurt",
-  "calories": 120,
-  "protein": 10,
-  "carbs": 8,
-  "fats": 4,
-  "barcode": "1234567890123"
-}
-```
-
-### Meal Stats
-
-- `GET /api/meals/stats`
-
-### Delete Meal
-
-- `DELETE /api/meals/:id`
-
-## Food API
-
-### Barcode Lookup
-
-- `GET /api/foods/barcode/3017620422003`
-
-### Search
-
-- `GET /api/foods/search?q=peanut%20butter`
-
-## Deployment
-
-### Frontend on Vercel
-
-- Root directory: `client`
-- Build command: `npm run build`
-- Output directory: `dist`
-- Env: `VITE_API_BASE_URL=https://your-backend-url/api`
-
-### Backend on Render
-
-- Root directory: `server`
-- Build command: `npm install`
-- Start command: `npm start`
-- Required env:
-
-```env
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
 PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-CLIENT_URL=https://your-frontend-url.vercel.app
-OPEN_FOOD_FACTS_BASE_URL=https://world.openfoodfacts.org
-JWT_SECRET=replace_this_with_a_long_random_secret
-JWT_EXPIRES_IN=7d
-```
+CLIENT_URL=http://localhost:5173
 
-## Notes
+Run backend:
 
-- Meal data is now scoped to the logged-in user.
-- The frontend stores the JWT in local storage and sends it as a Bearer token.
-- If you previously exposed a real MongoDB credential in local env files, rotate that password in MongoDB Atlas.
+npm run dev
+💻 Frontend Setup
+cd client
+npm install
+
+Create .env
+
+VITE_API_BASE_URL=http://localhost:5000/api
+
+Run frontend:
+
+npm run dev
+🌐 API Routes
+Auth Routes
+Method	Endpoint
+POST	/api/auth/register
+POST	/api/auth/login
+Food Routes
+Method	Endpoint
+GET	/api/foods/search
+Meal Routes
+Method	Endpoint
+GET	/api/meals
+POST	/api/meals
+🚀 Deployment
+Frontend (Vercel)
+
+Add Environment Variable:
+
+VITE_API_BASE_URL=https://your-backend.onrender.com/api
+Backend (Render)
+
+Add Environment Variables:
+
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+CLIENT_URL=https://your-frontend.vercel.app
+🔒 Security
+Environment variables secured using .env
+.env excluded using .gitignore
+JWT-based authentication
+MongoDB Atlas secured access
+📸 Screenshots
+
+Add your project screenshots here.
+
+👨‍💻 Author
+
+Pakala Venkata Varun Kumar
+
+GitHub: va-ru-n GitHub
+
+📄 License
+
+This project is developed for learning and educational purposes.
