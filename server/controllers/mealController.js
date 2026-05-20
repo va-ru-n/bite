@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Meal } from "../models/Meal.js";
 
 const buildQuery = ({ search, from, to }) => {
@@ -68,7 +69,7 @@ export const createMeal = async (req, res, next) => {
       protein: Number(protein) || 0,
       carbs: Number(carbs) || 0,
       fats: Number(fats) || 0,
-      barcode: barcode.trim(),
+      barcode: typeof barcode === "string" ? barcode.trim() : "",
     });
 
     res.status(201).json({
@@ -83,6 +84,13 @@ export const createMeal = async (req, res, next) => {
 
 export const deleteMeal = async (req, res, next) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid meal id",
+      });
+    }
+
     const meal = await Meal.findOneAndDelete({
       _id: req.params.id,
       user: req.user._id,
