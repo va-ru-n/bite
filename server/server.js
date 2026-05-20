@@ -20,9 +20,13 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: process.env.CLIENT_URL?.split(",") || "*",
+    origin: [
+      "https://bite-two.vercel.app",
+      "https://bite-git-main-va-ru-ns-projects.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-  }),
+  })
 );
 
 app.use(express.json());
